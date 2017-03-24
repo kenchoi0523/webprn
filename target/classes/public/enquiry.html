@@ -1,0 +1,35 @@
+<div class="container-fluid">
+	<div class="container-fluid" style="height:200px" ng-controller="postdatahistorycontroller">
+        <form name="customerForm" ng-submit="submitForm()">
+            <label>Data From</label>
+            <input type="text" name="dataFrom" class="form-control" ng-model="dataFrom"/>
+            <label>Data To</label>
+            <input type="text" name="dataTo" class="form-control" ng-model="dataTo"/>
+            <button type="submit" class="btn btn-primary">Submit</button>
+        </form>
+        <p>{{postResultMessage}}</p>
+    </div>
+     
+    <div class="container-fluid" ng-controller="getdatahistorycontroller">
+	    <table class="table">
+		    <thead>
+		      <tr>
+		        <th>Data From</th>
+		        <th>Data To</th>
+		      </tr>
+		    </thead>
+		    <tbody id="dataContent">
+		      <tr ng-repeat="dataHist in response">
+		        <td>{{dataHist.dataFrom}}</td>
+		        <td>{{dataHist.dataTo}}</td>
+		        
+		      </tr>      
+		      
+		    </tbody>
+		  </table>
+    	
+        <button class="btn btn-primary" id="btn-id" ng-click="getfunction()">Get All History</button>
+         
+    </div>
+    
+</div>

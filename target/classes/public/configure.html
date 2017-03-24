@@ -1,0 +1,111 @@
+<div class="generic-container">
+    <div class="panel panel-default">
+        <!-- Default panel contents -->
+        <div class="panel-heading"><span class="lead">Route Detail </span></div>
+        <div class="panel-body">
+            <div class="formcontainer">
+                <div class="alert alert-success" role="alert" ng-if="ctrl.successMessage">{{ctrl.successMessage}}</div>
+                <div class="alert alert-danger" role="alert" ng-if="ctrl.errorMessage">{{ctrl.errorMessage}}</div>
+                <form ng-submit="ctrl.submit()" name="myForm" class="form-horizontal">
+                    <input type="hidden" ng-model="ctrl.route.id" />
+                    <div class="row">
+                        <div class="form-group col-md-12">
+                            <label class="col-md-2 control-lable" for="routename">Route Name</label>
+                            <div class="col-md-7">
+                                <input type="text" ng-model="ctrl.route.name" id="routename" class="routename form-control input-sm" placeholder="Enter route name" required ng-minlength="3"/>
+                            </div>
+                        </div>
+                    </div>
+ 
+                    <div class="row">
+                        <div class="form-group col-md-12">
+                            <label class="col-md-2 control-lable" for="from">From Route</label>
+                            <div class="col-md-7">
+                                <input type="text" ng-model="ctrl.route.from" id="fromroute" class="form-control input-sm" placeholder="Enter from route." required />
+                            </div>
+                        </div>
+                    </div>
+     
+                    <div class="row">
+                        <div class="form-group col-md-12">
+                            <label class="col-md-2 control-lable" for="to">To Route</label>
+                            <div class="col-md-7">
+                                <input type="text" ng-model="ctrl.route.to" id="toroute" class="form-control input-sm" placeholder="Enter to route." required />
+                            </div>
+                        </div>
+                    </div>
+                    
+                    <div class="row">
+                        <div class="form-group col-md-12">
+                            <label class="col-md-2 control-lable" for="inputformat">Input Format</label>
+                            <div class="col-md-7">
+                                <input type="text" ng-model="ctrl.route.inputformat" id="inputformat" class="form-control input-sm" placeholder="Enter input format." required />
+                            </div>
+                        </div>
+                    </div>
+     
+                    <div class="row">
+                        <div class="form-group col-md-12">
+                            <label class="col-md-2 control-lable" for="outputformat">Output Format</label>
+                            <div class="col-md-7">
+                                <input type="text" ng-model="ctrl.route.outputformat" id="outputformat" class="form-control input-sm" placeholder="Enter output format." required />
+                            </div>
+                        </div>
+                    </div>
+                    
+                    <div class="row">
+                        <div class="form-group col-md-12">
+                            <label class="col-md-2 control-lable" for="to">Transfer Method</label>
+                            <div class="col-md-7">
+                                <input type="text" ng-model="ctrl.route.method" id="transfermethod" class="form-control input-sm" placeholder="Enter method." required />
+                            </div>
+                        </div>
+                    </div>
+ 
+                    <div class="row">
+                        <div class="form-actions floatRight">
+                            <input type="submit"  value="{{!ctrl.route.id ? 'Add' : 'Update'}}" class="btn btn-primary" ng-disabled="myForm.$invalid || myForm.$pristine">
+                            <button type="button" ng-click="ctrl.reset()" class="btn btn-warning" ng-disabled="myForm.$pristine">Reset</button>
+                        </div>
+                    </div>
+                </form>
+            </div>
+        </div>    
+    </div>
+    <div class="panel panel-default">
+        <!-- Default panel contents -->
+        <div class="panel-heading"><span class="lead">List of Routes </span></div>
+        <div class="panel-body">
+            <div class="table-responsive">
+                <table class="table table-hover">
+                    <thead>
+                    <tr>
+                        <th>ID</th>
+                        <th>NAME</th>
+                        <th>FROM</th>
+                        <th>TO</th>
+                        <th>INPUT FORMAT</th>
+                        <th>OUTPUT FORMAT</th>
+                        <th>METHOD</th>
+                        <th width="100"></th>
+                        <th width="100"></th>
+                    </tr>
+                    </thead>
+                    <tbody>
+                    <tr ng-repeat="res in ctrl.getAllRoutes()">
+                        <td>{{res.id}}</td>
+                        <td>{{res.name}}</td>
+                        <td>{{res.from}}</td>
+                        <td>{{res.to}}</td>
+                        <td>{{res.inputformat}}</td>
+                        <td>{{res.outputformat}}</td>
+                        <td>{{res.method}}</td>
+                        <td><button type="button" ng-click="ctrl.editRoute(res.id)" class="btn btn-success custom-width">Edit</button></td>
+                        <td><button type="button" ng-click="ctrl.removeRoute(res.id)" class="btn btn-danger custom-width">Remove</button></td>
+                    </tr>
+                    </tbody>
+                </table>      
+            </div>
+        </div>
+    </div>
+</div>
